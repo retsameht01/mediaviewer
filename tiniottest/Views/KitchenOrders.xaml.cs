@@ -50,8 +50,14 @@ namespace tiniottest.Views
         private async void loadAsyncData(object sender, object e)
         {
             GposApi<List<RestaurantOrder>> gposApi = new GposApi<List<RestaurantOrder>>();
-            var result = await gposApi.GetAsync("SaleOrders"); 
-            foodOrdersList.ItemsSource = result;
+            var result = await gposApi.GetAsync("SaleOrders");
+            var orderItems = new List<SaleOrderItem>();
+            foreach(var order in result)
+            {
+                orderItems.AddRange(order.SaleOrderItems);
+            }
+
+            foodOrdersList.ItemsSource = orderItems;
         }
     }
 }

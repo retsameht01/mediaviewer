@@ -95,6 +95,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="core\FoodModifier.cs" />
     <Compile Include="core\GposApi.cs" />
     <Compile Include="core\RestaurantOrder.cs" />
     <Compile Include="core\SaleOrderItem.cs" />

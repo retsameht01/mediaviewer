@@ -15,14 +15,14 @@
             <Button x:Name="backBtn" Height="50" Width="60" Content="Back" Foreground="White" Background="#0288d1" Margin="50,0,0,0" RelativePanel.AlignVerticalCenterWithPanel="True" HorizontalAlignment="Left" VerticalAlignment="Center"/>
         </RelativePanel>
 
-        <ListView x:Name="foodOrdersList" HorizontalAlignment="Stretch" Margin="0,100,0,0" VerticalAlignment="Stretch" Background="#01579b" Padding="0,10,0,0">
+        <ListView x:Name="foodOrdersList" HorizontalAlignment="Stretch" Margin="0,100,0,0" VerticalAlignment="Stretch" Background="#283593" Padding="0,10,0,0">
 
             <ListView.ItemTemplate>
-                <DataTemplate x:Name="DoubleLineDataTemplate" x:DataType="local11:RestaurantOrder">
-                    <StackPanel Orientation="Horizontal" Height="Auto" AutomationProperties.Name="{x:Bind DisplayName}" Background="#00e676" HorizontalAlignment="Stretch" Margin="100,0,100,30">
+                <DataTemplate x:Name="DoubleLineDataTemplate" x:DataType="local11:SaleOrderItem">
+                    <StackPanel Orientation="Horizontal" Height="Auto" AutomationProperties.Name="{x:Bind Id}" Background="#00e676" HorizontalAlignment="Stretch" Margin="100,0,100,30">
                         <StackPanel HorizontalAlignment="Stretch" Orientation="Vertical" VerticalAlignment="Center" Padding="20" >
-                            <TextBlock  Text="{x:Bind DisplayName}"  Style="{ThemeResource BaseTextBlockStyle}" Foreground="Black" FontSize="35" />
-                            <TextBlock  Text="{x:Bind TimeWaited}" Style="{ThemeResource BodyTextBlockStyle}" Foreground="Black" FontSize="20"/>
+                            <TextBlock  Text="{x:Bind Name}"  Style="{ThemeResource BaseTextBlockStyle}" Foreground="Black" FontSize="35" />
+                            <TextBlock  Text="{x:Bind NameNotes}" Style="{ThemeResource BodyTextBlockStyle}" Foreground="Black" FontSize="20"/>
                         </StackPanel>
                     </StackPanel>
                 </DataTemplate>
