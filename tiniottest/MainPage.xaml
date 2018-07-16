@@ -1,0 +1,59 @@
+﻿<Page
+    x:Class="tiniottest.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:local="using:core"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <RelativePanel x:Name="header" HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="150" Background="#0288d1">
+            <TextBlock x:Name="shopTitle" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True" Margin="50,0,0,0" Text="GPOS Wait List" TextWrapping="Wrap" VerticalAlignment="Center" FontSize="40" FontWeight="Bold" Foreground="White" />
+            <TextBlock x:Name="timeLbl"  RelativePanel.AlignVerticalCenterWithPanel="True" RelativePanel.AlignRightWithPanel="True" Margin="0,0,50,0" Text="TextBlock" TextWrapping="Wrap" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="24" FocusVisualPrimaryBrush="White" Foreground="White" FontWeight="Bold"/>
+            <TextBlock x:Name="weatherLbl"  RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignRightWithPanel="True" Margin="0,0,50,20" Text="TextBlock" TextWrapping="Wrap" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="24" FocusVisualPrimaryBrush="White" Foreground="White" FontWeight="Bold"/>
+            <Image  x:Name="weatherIcon" RelativePanel.LeftOf="weatherLbl" RelativePanel.AlignBottomWithPanel="True" HorizontalAlignment="Center" Height="30" Width="30" Margin="0,0,20,20" VerticalAlignment="Center" FocusVisualPrimaryBrush="White" FocusVisualSecondaryBrush="White" >
+
+            </Image>
+            <Button x:Name="settingsBtn" Margin="50,0,0,0" RelativePanel.AlignVerticalCenterWithPanel="True" Content="Settings"  Height="57" VerticalAlignment="Center" Width="108" Foreground="White" FontSize="22" Click="settingsBtn_Click"/>
+        </RelativePanel>
+
+        <ListView x:Name="signinList" HorizontalAlignment="Stretch" Margin="0,150,0,0" VerticalAlignment="Stretch" Background="#01579b" Padding="0,10,0,0">
+
+            <ListView.ItemTemplate>
+                <DataTemplate x:Name="DoubleLineDataTemplate" x:DataType="local:WaitingCustomer">
+                    <StackPanel Orientation="Horizontal" Height="Auto" AutomationProperties.Name="{x:Bind DisplayName}" Background="#283593" HorizontalAlignment="Stretch" Margin="100,0,100,30">
+                        <StackPanel HorizontalAlignment="Stretch" Orientation="Vertical" VerticalAlignment="Center" Padding="20" >
+                            <TextBlock  Text="{x:Bind DisplayName}"  Style="{ThemeResource BaseTextBlockStyle}" Foreground="White" FontSize="35" />
+                            <TextBlock  Text="{x:Bind TimeWaited}" Style="{ThemeResource BodyTextBlockStyle}" Foreground="White" FontSize="20"/>
+                        </StackPanel>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+
+            <!--
+            <ListView.ItemTemplate>
+
+                <DataTemplate>
+                    <TextBlock Text="{Binding DisplayName}" FontSize="40"></TextBlock>
+                </DataTemplate>
+
+            </ListView.ItemTemplate> -->
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="BorderThickness" Value="0"/>
+                    <Setter Property="Margin" Value="0"/>
+                    <Setter Property="Padding" Value="0"/>
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                </Style>
+            </ListView.ItemContainerStyle>
+
+        </ListView>
+        <Grid.Background>
+            <ImageBrush ImageSource="/Assets/StoreLogo.png"
+                    Stretch="UniformToFill" />
+        </Grid.Background>
+
+    </Grid>
+</Page>
