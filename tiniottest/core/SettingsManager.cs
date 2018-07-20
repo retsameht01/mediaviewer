@@ -29,7 +29,7 @@ namespace tiniottest.core
         }
 
 
-        public void loadDefaultSettings()
+        public void loadSettings()
         { 
             //TODO test the saving and loading of settings to make sure it works
             if (this.getStringSettings(SettingKey.BUSINESS_NAME_KEY) == null || 

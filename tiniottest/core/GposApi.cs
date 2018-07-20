@@ -11,21 +11,23 @@ namespace core
 {
 	public class GposApi<T> where T : class
     {
-        private Uri baseAddress;
+        private Uri baseAPIURL;
         public string ErrorMessage { get; set; }
         private String credentialBase64;
-        public GposApi()
+        //https://www.gposdev.com/20003/api/
+        public GposApi(string apiURL, string apiPass)
         {
-            credentialBase64 = Convert.ToBase64String(UTF8Encoding.UTF8.GetBytes("admin:6786716888"));
+            credentialBase64 = Convert.ToBase64String(UTF8Encoding.UTF8.GetBytes("admin:" + apiPass));
             try
             {
-                baseAddress = new Uri("https://www.gposdev.com/20003/api/");
+                baseAPIURL = new Uri(apiURL);
             }
             catch (Exception e)
             {
                 ErrorMessage = e.Message;
             }
         }
+
         public Task<T> GetAsync(string endpoint)
         {
             return Task.Run<T>(async () =>
@@ -33,7 +35,7 @@ namespace core
                 using (var httpClient = new HttpClient())
                 {
                     var responseString = string.Empty;
-                    httpClient.BaseAddress = baseAddress;
+                    httpClient.BaseAddress = baseAPIURL;
                     httpClient.DefaultRequestHeaders.Accept.Clear();
                     httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                     httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", credentialBase64);
@@ -63,7 +65,7 @@ namespace core
                             new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
 
                     HttpContent content = new StringContent(json, Encoding.UTF8, "application/json");
-                    httpClient.BaseAddress = baseAddress;
+                    httpClient.BaseAddress = baseAPIURL;
                     httpClient.DefaultRequestHeaders.Accept.Clear();
                    
                     httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
@@ -94,7 +96,7 @@ namespace core
                             new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
 
                     HttpContent content = new StringContent(json, Encoding.UTF8, "application/json");
-                    httpClient.BaseAddress = baseAddress;
+                    httpClient.BaseAddress = baseAPIURL;
                     httpClient.DefaultRequestHeaders.Accept.Clear();
                     httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                     httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", credentialBase64);

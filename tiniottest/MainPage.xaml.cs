@@ -27,11 +27,15 @@ namespace tiniottest
     /// </summary>
     public sealed partial class MainPage : Page
     {
-        SettingsManager settingsMgr;
+        private SettingsManager settingsMgr;
+        private GposApi<List<WaitingCustomer>> gposApi;
         public MainPage()
         {
             Loaded += MainWindow_Loaded;
             this.InitializeComponent();
+            settingsMgr = new SettingsManager();
+            gposApi = new GposApi<List<WaitingCustomer>>(settingsMgr.getStringSettings(SettingKey.GPOS_API_URL_KEY),
+                settingsMgr.getStringSettings(SettingKey.GPOS_API_PASS_KEY));
         }
 
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
@@ -44,9 +48,6 @@ namespace tiniottest
             dispatcherTimer.Start();
             //This is to start the timer immediately
             loadAsyncData(null, null);
-
-            settingsMgr = new SettingsManager();
-            settingsMgr.loadDefaultSettings();
             loadWeather();
         }
 
@@ -75,8 +76,8 @@ namespace tiniottest
 
         private async void loadAsyncData(object sender, object e)
         {
-            GposApi<List<WaitingCustomer>> gposApi = new GposApi<List<WaitingCustomer>>();
-            var result = await gposApi.GetAsync("signIns"); //restApi.getCustomersAsync();
+            
+            var result = await gposApi.GetAsync("signIns");
             signinList.ItemsSource = result;
             timeLbl.Text = getCurrentTime();
         }

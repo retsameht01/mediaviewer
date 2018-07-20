@@ -24,14 +24,20 @@ namespace tiniottest.Views
     /// </summary>
     public sealed partial class KitchenOrders : Page
     {
+        private GposApi<List<RestaurantOrder>> gposApi;
+        private SettingsManager settingsManager;
         public KitchenOrders()
         {
             Loaded += MainWindow_Loaded;
             this.InitializeComponent();
+            timeLbl.Text = getCurrentTime();
         }
 
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
+            settingsManager = new SettingsManager();
+            gposApi = new GposApi<List<RestaurantOrder>>(settingsManager.getStringSettings(SettingKey.GPOS_API_URL_KEY),
+                settingsManager.getStringSettings(SettingKey.GPOS_API_PASS_KEY));
             //timeLbl.Text = getCurrentTime();
             //weatherLbl.Text = "";
             DispatcherTimer dispatcherTimer = new DispatcherTimer();
@@ -40,24 +46,39 @@ namespace tiniottest.Views
             dispatcherTimer.Start();
             //This is to start the timer immediately
             loadAsyncData(null, null);
+        }
 
-            //settingsMgr = new SettingsManager();
-            //settingsMgr.loadDefaultSettings();
-            //loadWeather();
+        private String getCurrentTime()
+        {
+            DateTime localDate = DateTime.Now;
+            var timeString = localDate.ToString("ddd MMM dd, hh:mm tt");
+            return timeString;
         }
 
 
         private async void loadAsyncData(object sender, object e)
         {
-            GposApi<List<RestaurantOrder>> gposApi = new GposApi<List<RestaurantOrder>>();
-            var result = await gposApi.GetAsync("SaleOrders");
-            var orderItems = new List<SaleOrderItem>();
-            foreach(var order in result)
+            try
             {
-                orderItems.AddRange(order.SaleOrderItems);
+                var result = await gposApi.GetAsync("SaleOrders");
+                var orderItems = new List<SaleOrderItem>();
+                foreach (var order in result)
+                {
+                    orderItems.AddRange(order.SaleOrderItems);
+                }
+                ordersCount.Text = String.Format("Orders: {0}", orderItems.Count);
+                foodOrdersList.ItemsSource = orderItems;
             }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.StackTrace);
+            }
+           
+        }
 
-            foodOrdersList.ItemsSource = orderItems;
+        private void settingsBtn_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(Settings), null);
         }
     }
 }

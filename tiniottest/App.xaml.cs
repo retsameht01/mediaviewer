@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using tiniottest.core;
 using tiniottest.Views;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
@@ -27,10 +28,14 @@ namespace tiniottest
         /// Initializes the singleton application object.  This is the first line of authored code
         /// executed, and as such is the logical equivalent of main() or WinMain().
         /// </summary>
+        private SettingsManager settingsMgr;
         public App()
         {
             this.InitializeComponent();
             this.Suspending += OnSuspending;
+            //Load settings here
+            settingsMgr = new SettingsManager();
+            settingsMgr.loadSettings();
         }
 
         /// <summary>
@@ -68,7 +73,18 @@ namespace tiniottest
                     // configuring the new page by passing required information as a navigation
                     // parameter
 
-                    rootFrame.Navigate(typeof(KitchenOrders), e.Arguments);
+                    var OperationMode = settingsMgr.getStringSettings(SettingKey.OPERATION_MODE_KEY);
+                    switch(OperationMode)
+                    {
+                        case "WAITING LIST":
+                            rootFrame.Navigate(typeof(MainPage), e.Arguments);
+                            break;
+
+                        case "KITCHEN LIST":
+                            rootFrame.Navigate(typeof(KitchenOrders), e.Arguments);
+                            break;
+                    }
+
                 }
                 // Ensure the current window is active
                 Window.Current.Activate();

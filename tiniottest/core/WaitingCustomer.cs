@@ -24,7 +24,7 @@ namespace core
                 var currentDate = DateTime.Now;
                 var signInDate = DateTime.Parse(SignInTime);
                 var timeSpan = currentDate.Subtract(signInDate);
-                var waitDuration = String.Format("{0} h {1} m", timeSpan.Hours, timeSpan.Minutes);
+                var waitDuration = String.Format("{0} Hours {1} Minutes", timeSpan.Hours, timeSpan.Minutes);
                 return "Waited " + waitDuration;
                 //return "Sign In time: " + SignInTime.Substring(SignInTime.IndexOf("T") + 1) + " Waited: " + waitDuration ;
             } }

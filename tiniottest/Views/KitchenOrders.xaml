@@ -11,8 +11,10 @@
 
     <Grid>
         <RelativePanel HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="100" Background="#01579b">
-            <TextBlock x:Name="shopTitle" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True" Margin="50,0,0,0" Text="Kitchen Orders" TextWrapping="Wrap" VerticalAlignment="Center" FontSize="40" FontWeight="Bold" Foreground="White" />
-            <Button x:Name="backBtn" Height="50" Width="60" Content="Back" Foreground="White" Background="#0288d1" Margin="50,0,0,0" RelativePanel.AlignVerticalCenterWithPanel="True" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            <TextBlock x:Name="shopTitle" RelativePanel.AlignHorizontalCenterWithPanel="True"  Margin="50,5,0,0" Text="Kitchen Orders" TextWrapping="Wrap" VerticalAlignment="Center" FontSize="40" FontWeight="Bold" Foreground="White" />
+            <TextBlock x:Name="timeLbl"  RelativePanel.AlignVerticalCenterWithPanel="True" RelativePanel.AlignRightWithPanel="True" Margin="0,0,50,0" Text="TextBlock" TextWrapping="Wrap" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="24" FocusVisualPrimaryBrush="White" Foreground="White" FontWeight="Bold"/>
+            <TextBlock x:Name="ordersCount" Text="Orders: 0" Width="Auto" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignBottomWithPanel="True" Margin="0,0,0,10" FontSize="22" FontWeight="Bold" Foreground="White"/>
+            <Button x:Name="settingsBtn" Height="50" Width="98" Content="Settings" Foreground="White" Background="#0288d1" Margin="50,0,0,0" RelativePanel.AlignVerticalCenterWithPanel="True" HorizontalAlignment="Left" VerticalAlignment="Center" Click="settingsBtn_Click"/>
         </RelativePanel>
 
         <ListView x:Name="foodOrdersList" HorizontalAlignment="Stretch" Margin="0,100,0,0" VerticalAlignment="Stretch" Background="#283593" Padding="0,10,0,0">

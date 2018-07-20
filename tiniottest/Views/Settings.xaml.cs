@@ -71,7 +71,18 @@ namespace tiniottest.Views
             settingsMgr.saveSetting(SettingKey.GPOS_API_URL_KEY, gposURL.Text);
             settingsMgr.saveSetting(SettingKey.OPERATION_MODE_KEY, operationMode.SelectionBoxItem.ToString());
             settingsMgr.saveSetting(SettingKey.THEME_OPTION_KEY, themColor.SelectionBoxItem.ToString());
-            this.Frame.Navigate(typeof(MainPage), null);
+
+            var OperationMode = settingsMgr.getStringSettings(SettingKey.OPERATION_MODE_KEY);
+            switch (OperationMode)
+            {
+                case "WAITING LIST":
+                    this.Frame.Navigate(typeof(MainPage), null);
+                    break;
+
+                case "KITCHEN LIST":
+                    this.Frame.Navigate(typeof(KitchenOrders), null);
+                    break;
+            }
         }
     }
 }
