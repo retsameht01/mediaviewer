@@ -30,5 +30,12 @@ namespace tiniottest.core.Model
         public decimal BalanceDue { get; set; }
         public string CreatedBy { get; set; }
 
+        public string TableInfo { get
+            {
+                return "Table " + TableName +" Id " + TableId +" Order # " + OrderNumber;
+            }
+               
+        }
+
     }
 }

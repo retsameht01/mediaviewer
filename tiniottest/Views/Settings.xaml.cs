@@ -80,7 +80,7 @@ namespace tiniottest.Views
                     break;
 
                 case "KITCHEN LIST":
-                    this.Frame.Navigate(typeof(KitchenOrders), null);
+                    this.Frame.Navigate(typeof(KitchenOrdersBinding), null);
                     break;
             }
         }

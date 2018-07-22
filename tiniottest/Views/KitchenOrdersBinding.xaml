@@ -1,0 +1,48 @@
+﻿<Page
+    x:Class="tiniottest.Views.KitchenOrdersBinding"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:tiniottest.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:local11="using:tiniottest.core.Model"
+    xmlns:viewModel="using:tiniottest.Views.ViewModels"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <RelativePanel HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="100" Background="#01579b">
+            <TextBlock x:Name="shopTitle" RelativePanel.AlignHorizontalCenterWithPanel="True"  Margin="50,5,0,0" Text="Kitchen Orders" TextWrapping="Wrap" VerticalAlignment="Center" FontSize="40" FontWeight="Bold" Foreground="White" />
+            <TextBlock x:Name="timeLbl"  RelativePanel.AlignVerticalCenterWithPanel="True" RelativePanel.AlignRightWithPanel="True" Margin="0,0,50,0" Text="TextBlock" TextWrapping="Wrap" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="24" FocusVisualPrimaryBrush="White" Foreground="White" FontWeight="Bold"/>
+            <TextBlock x:Name="ordersCount" Text="Orders: 0" Width="Auto" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignBottomWithPanel="True" Margin="0,0,0,10" FontSize="22" FontWeight="Bold" Foreground="White"/>
+            <Button x:Name="settingsBtn" Height="50" Width="98" Content="Settings" Foreground="White" Background="#0288d1" Margin="50,0,0,0" RelativePanel.AlignVerticalCenterWithPanel="True" HorizontalAlignment="Left" VerticalAlignment="Center" Click="settingsBtn_Click"/>
+        </RelativePanel>
+
+        <ListView x:Name="foodOrdersList" HorizontalAlignment="Stretch" Margin="0,100,0,0" VerticalAlignment="Stretch" 
+                  ItemsSource="{x:Bind ViewModel.Orders}"
+                  Background="#283593" Padding="0,10,0,0">
+
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="local11:RestaurantOrder">
+                    <StackPanel Orientation="Horizontal" Height="Auto" Background="#00e676" HorizontalAlignment="Stretch" Margin="100,0,100,30">
+                        <StackPanel HorizontalAlignment="Stretch" Orientation="Vertical" VerticalAlignment="Center" Padding="20" >
+                            <TextBlock  Text="{x:Bind TableInfo}"  Style="{ThemeResource BaseTextBlockStyle}" Foreground="Black" FontSize="35" />
+                          
+                        </StackPanel>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+<!--
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="BorderThickness" Value="0"/>
+                    <Setter Property="Margin" Value="0"/>
+                    <Setter Property="Padding" Value="0"/>
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                </Style>
+            </ListView.ItemContainerStyle> -->
+
+        </ListView>
+
+    </Grid>
+</Page>

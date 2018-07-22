@@ -81,7 +81,7 @@ namespace tiniottest
                             break;
 
                         case "KITCHEN LIST":
-                            rootFrame.Navigate(typeof(KitchenOrders), e.Arguments);
+                            rootFrame.Navigate(typeof(KitchenOrdersBinding), e.Arguments);
                             break;
                     }
 
