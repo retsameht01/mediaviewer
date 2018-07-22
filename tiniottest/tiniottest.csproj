@@ -95,16 +95,16 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="core\FoodModifier.cs" />
+    <Compile Include="core\Model\FoodModifier.cs" />
     <Compile Include="core\GposApi.cs" />
-    <Compile Include="core\RestaurantOrder.cs" />
-    <Compile Include="core\SaleOrderItem.cs" />
+    <Compile Include="core\Model\RestaurantOrder.cs" />
+    <Compile Include="core\Model\SaleOrderItem.cs" />
     <Compile Include="core\SettingKey.cs" />
     <Compile Include="core\SettingsManager.cs" />
     <Compile Include="core\SettingsModel.cs" />
-    <Compile Include="core\WaitingCustomer.cs" />
+    <Compile Include="core\Model\WaitingCustomer.cs" />
     <Compile Include="core\WeatherApi.cs" />
-    <Compile Include="core\WeatherInfo.cs" />
+    <Compile Include="core\Model\WeatherInfo.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>

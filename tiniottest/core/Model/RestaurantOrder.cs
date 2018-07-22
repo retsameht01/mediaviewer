@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace tiniottest.core
+namespace tiniottest.core.Model
 {
-    class RestaurantOrder
+    public class RestaurantOrder
     {
         public int Id { get; set; }
         public string OrderDate { get; set; }

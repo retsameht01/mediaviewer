@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace tiniottest.core
+namespace tiniottest.core.Model
 {
-    class FoodModifier
+    public class FoodModifier
     {
         public int Id { get; set; }
         public string Note { get; set; }
