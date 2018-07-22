@@ -9,6 +9,7 @@ using tiniottest.core.Model;
 using tiniottest.Views.ViewModels;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -34,7 +35,8 @@ namespace tiniottest.Views
             
             this.InitializeComponent();
             ViewModel = new KitchenViewModel();
-            
+           
+
             DataContext = ViewModel;
             timeLbl.Text = getCurrentTime();
         }
@@ -103,6 +105,18 @@ namespace tiniottest.Views
         private void settingsBtn_Click(object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(Settings), null);
+        }
+
+        private void onOrderItemClick(object sender, ItemClickEventArgs e)
+        {
+            
+            RestaurantOrder order = (RestaurantOrder)((GridView)sender).SelectedItem;
+            if(order != null)
+            {
+                var dialog = new MessageDialog("Table Clicked: " + order.TableInfo, "Click");
+                var result = dialog.ShowAsync();
+            }
+            
         }
     }
 }

@@ -26,5 +26,14 @@ namespace tiniottest.core.Model
         public string NameNotes { get; set; }
         public bool ServicePrinted { get; set; }
         public List<FoodModifier> Modifiers { get; set; }
+        public string OrderItems
+        {
+            get
+            {
+                return "" + Name + " Quantity " + Quantity;
+            }
+
+
+        }
     }
 }

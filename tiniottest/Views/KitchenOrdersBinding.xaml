@@ -17,9 +17,44 @@
             <TextBlock x:Name="ordersCount" Text="Orders: 0" Width="Auto" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignBottomWithPanel="True" Margin="0,0,0,10" FontSize="22" FontWeight="Bold" Foreground="White"/>
             <Button x:Name="settingsBtn" Height="50" Width="98" Content="Settings" Foreground="White" Background="#0288d1" Margin="50,0,0,0" RelativePanel.AlignVerticalCenterWithPanel="True" HorizontalAlignment="Left" VerticalAlignment="Center" Click="settingsBtn_Click"/>
         </RelativePanel>
+        
 
+
+        <GridView x:Name="foodOrderGrid" HorizontalAlignment="Stretch" Margin="0,100,0,0"
+                   ItemsSource="{x:Bind ViewModel.Orders}"
+                  IsItemClickEnabled="true"
+                  ItemClick="onOrderItemClick"
+                  VerticalAlignment="Stretch" Background="#283593" Padding="0,10,0,0">
+            <GridView.ItemTemplate>
+                <DataTemplate x:DataType="local11:RestaurantOrder">
+                    <StackPanel Orientation="Vertical" Width="300" Margin="10,0,10,10" Background="Coral" Height="500">
+                        <TextBlock  Text="{x:Bind TableInfo}"  Style="{ThemeResource BaseTextBlockStyle}" Foreground="Black" FontSize="18" />
+                        <ListView HorizontalAlignment="Stretch"  ItemsSource="{x:Bind SaleOrderItems}">
+                            
+                            <ListView.ItemTemplate>
+                                <DataTemplate x:DataType="local11:SaleOrderItem">
+                                    <StackPanel Orientation="Horizontal" Height="Auto" Background="#00e676" HorizontalAlignment="Stretch" Margin="20,0,20,30">
+                                        <StackPanel HorizontalAlignment="Stretch" Orientation="Vertical" VerticalAlignment="Center" Padding="20" >
+                                            <TextBlock  Text="{x:Bind OrderItems}"  Style="{ThemeResource BaseTextBlockStyle}" Foreground="Black" FontSize="15" />
+
+                                        </StackPanel>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                        
+
+                    </StackPanel>
+                    
+                </DataTemplate>
+            </GridView.ItemTemplate>
+            
+        </GridView>
+        
+        <!-- 
         <ListView x:Name="foodOrdersList" HorizontalAlignment="Stretch" Margin="0,100,0,0" VerticalAlignment="Stretch" 
                   ItemsSource="{x:Bind ViewModel.Orders}"
+                 
                   Background="#283593" Padding="0,10,0,0">
 
             <ListView.ItemTemplate>
@@ -32,7 +67,7 @@
                     </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>
-<!--
+
             <ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem">
                     <Setter Property="BorderThickness" Value="0"/>
@@ -40,9 +75,9 @@
                     <Setter Property="Padding" Value="0"/>
                     <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
                 </Style>
-            </ListView.ItemContainerStyle> -->
+            </ListView.ItemContainerStyle> 
 
-        </ListView>
+        </ListView> -->
 
     </Grid>
 </Page>
