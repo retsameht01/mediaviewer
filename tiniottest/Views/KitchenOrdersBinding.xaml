@@ -27,16 +27,24 @@
                   VerticalAlignment="Stretch" Background="#283593" Padding="0,10,0,0">
             <GridView.ItemTemplate>
                 <DataTemplate x:DataType="local11:RestaurantOrder">
-                    <StackPanel Orientation="Vertical" Width="300" Margin="10,0,10,10" Background="Coral" Height="500">
-                        <TextBlock  Text="{x:Bind TableInfo}"  Style="{ThemeResource BaseTextBlockStyle}" Foreground="Black" FontSize="18" />
-                        <ListView HorizontalAlignment="Stretch"  ItemsSource="{x:Bind SaleOrderItems}">
-                            
+                    <StackPanel Orientation="Vertical" Width="400" Margin="10,0,10,10" Background="White" Height="500" Padding="10,0,10,0">
+                        <StackPanel Orientation="Horizontal" >
+                            <TextBlock  Text="{x:Bind TicketInfo}" FontWeight="Black" Style="{ThemeResource BaseTextBlockStyle}" Foreground="Black" FontSize="20" Margin="0,0,10,0"  VerticalAlignment="Center"/>
+                            <TextBlock  Text="{x:Bind OrderDate}"  Style="{ThemeResource BaseTextBlockStyle}" Foreground="Black" FontSize="16" VerticalAlignment="Center"/>
+                        </StackPanel>
+                        <TextBlock  Text="{x:Bind OrderCount}"  Style="{ThemeResource BaseTextBlockStyle}" Foreground="Black" FontSize="20" Margin="0,0,10,0"/>
+                        <TextBlock  Text="Details:"  Style="{ThemeResource BaseTextBlockStyle}" Foreground="Black" FontSize="20" Margin="0,0,10,5"/>
+
+                        <ListView HorizontalAlignment="Stretch"  ItemsSource="{x:Bind SaleOrderItems}" Background="AliceBlue">
                             <ListView.ItemTemplate>
                                 <DataTemplate x:DataType="local11:SaleOrderItem">
-                                    <StackPanel Orientation="Horizontal" Height="Auto" Background="#00e676" HorizontalAlignment="Stretch" Margin="20,0,20,30">
-                                        <StackPanel HorizontalAlignment="Stretch" Orientation="Vertical" VerticalAlignment="Center" Padding="20" >
-                                            <TextBlock  Text="{x:Bind OrderItems}"  Style="{ThemeResource BaseTextBlockStyle}" Foreground="Black" FontSize="15" />
-
+                                    <StackPanel Orientation="Horizontal" Height="Auto" HorizontalAlignment="Stretch" Margin="5,0,0,0">
+                                        <StackPanel HorizontalAlignment="Stretch" Orientation="Vertical" VerticalAlignment="Center">
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock Text="{x:Bind ItemQuantity}" FontSize="17" FontWeight="Bold" VerticalAlignment="Bottom"/>
+                                                <TextBlock Text="{x:Bind ItemDetails}" FontSize="15" VerticalAlignment="Bottom" Margin="10,0,0,0"/>
+                                            </StackPanel>
+                                            <TextBlock  Text="{x:Bind ModifiersList}"  Style="{ThemeResource BaseTextBlockStyle}" Foreground="Black" FontSize="15" />
                                         </StackPanel>
                                     </StackPanel>
                                 </DataTemplate>

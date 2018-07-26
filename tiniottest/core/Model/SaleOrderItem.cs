@@ -35,5 +35,37 @@ namespace tiniottest.core.Model
 
 
         }
+
+        public string ItemDetails
+        {
+            get
+            {
+                return String.Format("{0}", Name);
+            }
+        }
+
+        public string ItemQuantity
+        {
+            get
+            {
+                return "" + Quantity;
+            }
+        }
+
+        public string ModifiersList        {
+            get
+            {
+                var output = "";
+                if (Modifiers != null && Modifiers.Count > 0)
+                {
+                    foreach(var mod in Modifiers)
+                    {
+                        output += "* " + mod.Name + "\n"; 
+                    }
+                }
+
+                return output.ToUpper();
+            }
+        }
     }
 }

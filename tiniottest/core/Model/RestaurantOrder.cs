@@ -32,9 +32,25 @@ namespace tiniottest.core.Model
 
         public string TableInfo { get
             {
-                return "Table " + TableName +" Id " + TableId +" Order # " + OrderNumber;
+                return "Table " + TableName +" Id " + TableId +" Order # " + Id;
             }
                
+        }
+
+        public string TicketInfo
+        {
+            get
+            {
+                return String.Format("Table {0} Order #{1}",TableId ,Id);
+            }
+        }
+
+        public string OrderCount
+        {
+            get
+            {
+                return String.Format("Item count: {0}", SaleOrderItems.Count);
+            }
         }
 
     }

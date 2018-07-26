@@ -74,11 +74,6 @@ namespace tiniottest.Views
                 ViewModel.SetData(result);
                 ordersCount.Text = String.Format("Orders: {0}", result.Count);
 
-
-                
-              
-             
-
                 /*var orderItems = new List<SaleOrderItem>();
                 foreach (var order in result)
                 {
