@@ -29,13 +29,15 @@ namespace tiniottest.Views
     {
         private GposApi<List<RestaurantOrder>> gposApi;
         private SettingsManager settingsManager;
+        private int REFRESH_DELAY = 30;
         public KitchenOrdersBinding()
         {
             Loaded += MainWindow_Loaded;
             
             this.InitializeComponent();
             ViewModel = new KitchenViewModel();
-           
+            
+
 
             DataContext = ViewModel;
             timeLbl.Text = getCurrentTime();
@@ -51,7 +53,7 @@ namespace tiniottest.Views
             //timeLbl.Text = getCurrentTime();
             //weatherLbl.Text = "";
             DispatcherTimer dispatcherTimer = new DispatcherTimer();
-            dispatcherTimer.Interval = new TimeSpan(0, 0, 10);
+            dispatcherTimer.Interval = new TimeSpan(0, 0, REFRESH_DELAY);
             dispatcherTimer.Tick += loadAsyncData;
             dispatcherTimer.Start();
             //This is to start the timer immediately
@@ -102,16 +104,92 @@ namespace tiniottest.Views
             this.Frame.Navigate(typeof(Settings), null);
         }
 
+        
+
         private void onOrderItemClick(object sender, ItemClickEventArgs e)
         {
-            
+            /*
             RestaurantOrder order = (RestaurantOrder)((GridView)sender).SelectedItem;
             if(order != null)
             {
                 var dialog = new MessageDialog("Table Clicked: " + order.TableInfo, "Click");
                 var result = dialog.ShowAsync();
             }
+            */
             
+        }
+
+        private async void onOrderSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            /*
+            RestaurantOrder order = (RestaurantOrder)((GridView)sender).SelectedItem;
+            if (order != null)
+            {
+                var completeMsg = String.Format("Complete Order #{0}?", order.Id);
+                var title = String.Format("Table {0}", order.TableId);
+                var dialog = new MessageDialog(completeMsg, title);
+                dialog.Commands.Clear();
+                dialog.Commands.Add(new UICommand { Label = "Yes", Id = 0 });
+                dialog.Commands.Add(new UICommand { Label = "No", Id = 1 });
+
+                var res = await dialog.ShowAsync();
+
+                if ((int)res.Id == 0)
+                {
+                    //MessageDialog msgbox2 = new MessageDialog("Yes clicked", "User Response");
+                    //await msgbox2.ShowAsync();
+                    ViewModel.removeOrder(order);
+                    //Handle update order from server
+
+                }
+
+                if ((int)res.Id == 1)
+                {
+                    MessageDialog msgbox2 = new MessageDialog("No clicked", "User Response");
+                   await msgbox2.ShowAsync();
+                }
+
+                var result = dialog.ShowAsync();
+            }
+            */
+        }
+
+        private async void CompleteOrderClick(object sender, RoutedEventArgs e)
+        {
+            Button button = (Button)sender;
+            RestaurantOrder order = ViewModel.getOrder(button.Name);
+
+            if (order != null && !ViewModel.wasOrderCompleted(order.Id))
+            {
+                var completeMsg = String.Format("Complete Order #{0}?", order.Id);
+                var title = String.Format("Table {0}", order.TableId);
+                var dialog = new MessageDialog(completeMsg, title);
+                dialog.Commands.Clear();
+                dialog.Commands.Add(new UICommand { Label = "Yes", Id = 0 });
+                dialog.Commands.Add(new UICommand { Label = "No", Id = 1 });
+
+                var res = await dialog.ShowAsync();
+
+                if ((int)res.Id == 0)
+                {
+
+
+                    //Handle update order from server
+                    order.Status = "Completed";
+                   string result = await gposApi.PatchAsync("SaleOrders", order);
+                    string removeMsg = string.Format("Order Removed result:{0}", result);
+                    ViewModel.removeOrder(order);
+                    MessageDialog deleteConfirmation = new MessageDialog(removeMsg, "Notice");
+                    await deleteConfirmation.ShowAsync();
+                }
+
+                if ((int)res.Id == 1)
+                {
+                    MessageDialog msgbox2 = new MessageDialog("No clicked", "User Response");
+                    await msgbox2.ShowAsync();
+                }
+            }
+
         }
     }
 }

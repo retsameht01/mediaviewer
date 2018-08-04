@@ -18,12 +18,11 @@
             <Button x:Name="settingsBtn" Height="50" Width="98" Content="Settings" Foreground="White" Background="#0288d1" Margin="50,0,0,0" RelativePanel.AlignVerticalCenterWithPanel="True" HorizontalAlignment="Left" VerticalAlignment="Center" Click="settingsBtn_Click"/>
         </RelativePanel>
         
-
-
         <GridView x:Name="foodOrderGrid" HorizontalAlignment="Stretch" Margin="0,100,0,0"
                    ItemsSource="{x:Bind ViewModel.Orders}"
                   IsItemClickEnabled="true"
                   ItemClick="onOrderItemClick"
+                  SelectionChanged="onOrderSelectionChanged"
                   VerticalAlignment="Stretch" Background="#283593" Padding="0,10,0,0">
             <GridView.ItemTemplate>
                 <DataTemplate x:DataType="local11:RestaurantOrder">
@@ -34,23 +33,29 @@
                         </StackPanel>
                         <TextBlock  Text="{x:Bind OrderCount}"  Style="{ThemeResource BaseTextBlockStyle}" Foreground="Black" FontSize="20" Margin="0,0,10,0"/>
                         <TextBlock  Text="Details:"  Style="{ThemeResource BaseTextBlockStyle}" Foreground="Black" FontSize="20" Margin="0,0,10,5"/>
+                       
 
                         <ListView HorizontalAlignment="Stretch"  ItemsSource="{x:Bind SaleOrderItems}" Background="AliceBlue">
                             <ListView.ItemTemplate>
                                 <DataTemplate x:DataType="local11:SaleOrderItem">
-                                    <StackPanel Orientation="Horizontal" Height="Auto" HorizontalAlignment="Stretch" Margin="5,0,0,0">
+                                    <RelativePanel  Height="Auto" HorizontalAlignment="Stretch" Margin="5,0,0,0">
                                         <StackPanel HorizontalAlignment="Stretch" Orientation="Vertical" VerticalAlignment="Center">
                                             <StackPanel Orientation="Horizontal">
-                                                <TextBlock Text="{x:Bind ItemQuantity}" FontSize="17" FontWeight="Bold" VerticalAlignment="Bottom"/>
-                                                <TextBlock Text="{x:Bind ItemDetails}" FontSize="15" VerticalAlignment="Bottom" Margin="10,0,0,0"/>
+                                                <TextBlock Text="{x:Bind ItemQuantity}" FontSize="17" FontWeight="Bold" VerticalAlignment="Bottom" Foreground="Black"/>
+                                                <TextBlock Text="{x:Bind ItemDetails}" FontSize="15" VerticalAlignment="Bottom" Margin="10,0,0,0" 
+                                                           Foreground="Black"/>
                                             </StackPanel>
                                             <TextBlock  Text="{x:Bind ModifiersList}"  Style="{ThemeResource BaseTextBlockStyle}" Foreground="Black" FontSize="15" />
                                         </StackPanel>
-                                    </StackPanel>
+                                       
+                                    </RelativePanel>
                                 </DataTemplate>
                             </ListView.ItemTemplate>
                         </ListView>
-                        
+
+                        <Button Name="{x:Bind IdString}" Content="Finish Order" Click="CompleteOrderClick" Margin="0,20,0,0" Foreground="White" Background="RosyBrown"
+                                Width="120" Height="40" HorizontalAlignment="Center" FontWeight="Bold" />
+
 
                     </StackPanel>
                     

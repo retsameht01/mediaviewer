@@ -5,7 +5,7 @@ using Newtonsoft.Json;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
-
+using tiniottest.core.Model;
 
 namespace core
 {
@@ -96,6 +96,37 @@ namespace core
                             new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
 
                     HttpContent content = new StringContent(json, Encoding.UTF8, "application/json");
+                    httpClient.BaseAddress = baseAPIURL;
+                    httpClient.DefaultRequestHeaders.Accept.Clear();
+                    httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                    httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", credentialBase64);
+                    try
+                    {
+                        var responseMessage = await httpClient.PutAsync(endpoint, content);
+                        var stringResponse = await responseMessage.Content.ReadAsStringAsync();
+                        return stringResponse;
+                    }
+                    catch (Exception ex)
+                    {
+                        return ex.Message;
+                    }
+                }
+            });
+        }
+
+        public Task<string> PatchAsync(string endpoint, RestaurantOrder postObject)
+        {
+            return Task.Run<string>(async () =>
+            {
+                using (var httpClient = new HttpClient())
+                {
+                    var json = JsonConvert.SerializeObject(
+                            postObject,
+                            Formatting.Indented,
+                            new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
+
+                    HttpContent content = new StringContent(json, Encoding.UTF8, "application/json");
+                   
                     httpClient.BaseAddress = baseAPIURL;
                     httpClient.DefaultRequestHeaders.Accept.Clear();
                     httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
