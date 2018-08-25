@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.UI.Xaml;
 
 namespace tiniottest.core.Model
 {
@@ -67,5 +68,28 @@ namespace tiniottest.core.Model
                 return output.ToUpper();
             }
         }
+
+        public string OrderItemId
+        {
+            get
+            {
+                return "" + Id;
+            }
+        }
+
+        private Visibility visibility = Visibility.Collapsed;
+        public Visibility Vis
+        {
+            get
+            {
+                return visibility;
+            }
+            set
+            {
+                visibility = value;
+            }
+        }
+
+        public bool ItemProcessed { get; set; }
     }
 }

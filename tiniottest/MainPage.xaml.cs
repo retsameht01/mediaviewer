@@ -31,13 +31,19 @@ namespace tiniottest
     {
         private SettingsManager settingsMgr;
         private GposApi<List<WaitingCustomer>> gposApi;
+        private GposApi<List<ListProduct>> gposApi2;
+        private int runningTime;
+        private static int TIME_BETWEEN_CHANGES = 60;
         public MainPage()
         {
             Loaded += MainWindow_Loaded;
             this.InitializeComponent();
+            runningTime = 0;
             settingsMgr = new SettingsManager();
             gposApi = new GposApi<List<WaitingCustomer>>(settingsMgr.getStringSettings(SettingKey.GPOS_API_URL_KEY),
                 settingsMgr.getStringSettings(SettingKey.GPOS_API_PASS_KEY));
+
+            gposApi2 = new GposApi<List<ListProduct>>(settingsMgr.getStringSettings(SettingKey.GPOS_API_URL_KEY), settingsMgr.getStringSettings(SettingKey.GPOS_API_PASS_KEY));
         }
 
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
@@ -82,6 +88,25 @@ namespace tiniottest
             var result = await gposApi.GetAsync("signIns");
             signinList.ItemsSource = result;
             timeLbl.Text = getCurrentTime();
+
+            var products = await gposApi2.GetAsync("ListProducts/?showProducts=true");
+            priceList.ItemsSource = products;
+
+            runningTime += 10;
+            if(runningTime > TIME_BETWEEN_CHANGES)
+            {
+                runningTime = 0;
+                if(signinList.Visibility == Visibility.Collapsed)
+                {
+                    signinList.Visibility = Visibility.Visible;
+                    
+                    priceList.Visibility = Visibility.Collapsed;
+                } else{
+                    signinList.Visibility = Visibility.Collapsed;
+                    priceList.Visibility = Visibility.Visible;
+                }
+            }
+
         }
 
         private String getCurrentTime()

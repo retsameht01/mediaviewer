@@ -95,8 +95,12 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="core\Model\BooleanToVisibilityConverter.cs" />
+    <Compile Include="core\Model\Category.cs" />
     <Compile Include="core\Model\FoodModifier.cs" />
     <Compile Include="core\GposApi.cs" />
+    <Compile Include="core\Model\ListProduct.cs" />
+    <Compile Include="core\Model\Product.cs" />
     <Compile Include="core\Model\RestaurantOrder.cs" />
     <Compile Include="core\Model\SaleOrderItem.cs" />
     <Compile Include="core\SettingKey.cs" />
@@ -117,6 +121,9 @@
     </Compile>
     <Compile Include="Views\Settings.xaml.cs">
       <DependentUpon>Settings.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Signage.xaml.cs">
+      <DependentUpon>Signage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ViewModels\KitchenViewModel.cs" />
   </ItemGroup>
@@ -145,6 +152,7 @@
     <Content Include="Assets\13n.png" />
     <Content Include="Assets\50d.png" />
     <Content Include="Assets\50n.png" />
+    <Content Include="Assets\checkmark.png" />
     <Content Include="Assets\gpos_logo.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
@@ -173,6 +181,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Settings.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Signage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

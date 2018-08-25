@@ -1,17 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using tiniottest.core.Model;
+using Windows.UI.Xaml;
 
 namespace tiniottest.Views.ViewModels
 {
     public class KitchenViewModel
+
     {
 
         private List<int> completedOrders;
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
         public KitchenViewModel()
         {
             Orders = new ObservableCollection<RestaurantOrder>();
@@ -59,5 +65,24 @@ namespace tiniottest.Views.ViewModels
         {
             return completedOrders.Contains(orderId);
         }
+
+        public void UpdateItem(string orderId, string itemId)
+        {
+            foreach(RestaurantOrder order in Orders)
+            {
+                if(order.IdString.Equals(orderId, StringComparison.CurrentCultureIgnoreCase))
+                {
+                  foreach(SaleOrderItem item in order.SaleOrderItems)
+                    {
+                        if(item.OrderItemId.Equals(itemId))
+                        {
+                            item.ItemProcessed = true;
+                            item.Vis = Visibility.Visible;
+                        }
+                    }
+                }
+            }
+        }
+
     }
 }

@@ -41,7 +41,7 @@ namespace tiniottest.core.Model
         {
             get
             {
-                return String.Format("#{0} Table {1} ",Id, TableId);
+                return String.Format("Order #{0} Table {1} ",Id, TableId);
             }
         }
 
@@ -49,7 +49,7 @@ namespace tiniottest.core.Model
         {
             get
             {
-                return String.Format("Items {0}:", SaleOrderItems.Count);
+                return String.Format("Items Count {0}", SaleOrderItems.Count);
             }
         }
 

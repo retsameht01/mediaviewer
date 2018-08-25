@@ -1,0 +1,28 @@
+﻿<Page
+    x:Class="tiniottest.Views.Signage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:tiniottest.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <RelativePanel Background="LightGray"  VerticalAlignment="Stretch" Margin="0,0,300,0">
+            <StackPanel Background="AliceBlue" Height="100" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" Margin="0,0,0,0" HorizontalAlignment="Stretch"/>
+            <Image Name="imgView" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" Margin="0,100,0,0" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignTopWithPanel="True"/>
+        </RelativePanel>
+
+        <RelativePanel Background="DarkBlue" HorizontalAlignment="Right" Width="300" Margin="0,0,0,100" Padding="15,10,10,0">
+            <TextBlock Text="Atlanta" FontSize="30" Foreground="White" Name="cityLabel"/>
+            <TextBlock Text="Today Wednesday 11:34" RelativePanel.Below="cityLabel" Foreground="White" FontSize="25" Name="timeLabel"/>
+            <Image RelativePanel.Below="timeLabel" Width="20" Height="20"/>
+            
+
+        </RelativePanel>
+        <RelativePanel Background="ForestGreen" VerticalAlignment="Bottom" Height="100"></RelativePanel>
+
+
+    </Grid>
+</Page>

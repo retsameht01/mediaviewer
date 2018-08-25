@@ -5,7 +5,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:local="using:core.Model"
-    mc:Ignorable="d"
+    xmlns:local1="using:tiniottest.core.Model"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
@@ -19,7 +19,7 @@
             <Button x:Name="settingsBtn" Margin="50,0,0,0" RelativePanel.AlignVerticalCenterWithPanel="True" Content="Settings"  Height="57" VerticalAlignment="Center" Width="108" Foreground="White" FontSize="22" Click="settingsBtn_Click"/>
         </RelativePanel>
 
-        <ListView x:Name="signinList" HorizontalAlignment="Stretch" Margin="0,150,0,0" VerticalAlignment="Stretch" Background="#01579b" Padding="0,10,0,0">
+        <ListView x:Name="signinList" HorizontalAlignment="Stretch" Margin="0,150,0,0" VerticalAlignment="Stretch" Background="#01579b" Padding="0,10,0,0" Visibility="Collapsed">
 
             <ListView.ItemTemplate>
                 <DataTemplate x:Name="DoubleLineDataTemplate" x:DataType="local:WaitingCustomer">
@@ -31,15 +31,7 @@
                     </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>
-
-            <!--
-            <ListView.ItemTemplate>
-
-                <DataTemplate>
-                    <TextBlock Text="{Binding DisplayName}" FontSize="40"></TextBlock>
-                </DataTemplate>
-
-            </ListView.ItemTemplate> -->
+            
             <ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem">
                     <Setter Property="BorderThickness" Value="0"/>
@@ -49,7 +41,23 @@
                 </Style>
             </ListView.ItemContainerStyle>
 
+        </ListView> 
+
+
+        <ListView x:Name="priceList" HorizontalAlignment="Stretch" Margin="0,150,0,0" VerticalAlignment="Stretch" Background="#01579b" Padding="0,10,0,0" Visibility="Visible">
+            <ListView.ItemTemplate>
+                <DataTemplate x:Name="DoubleLineDataTemplate2" x:DataType="local1:ListProduct">
+                    <StackPanel  Orientation="Horizontal" Height="40" AutomationProperties.Name="{x:Bind Name}" Background="#283593" HorizontalAlignment="Stretch" Margin="100,0,100,10">
+                        <Image Width="40" Height="40" Source="{x:Bind imgUri}"/>
+                        <TextBlock  Text="{x:Bind Name}"  Style="{ThemeResource BaseTextBlockStyle}" Foreground="White" FontSize="20" />
+                        <TextBlock  Text="{x:Bind itemPrice}" Style="{ThemeResource BodyTextBlockStyle}" Foreground="White" FontSize="20" Margin="20,0,100,10"
+                />
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
         </ListView>
+
+
         <Grid.Background>
             <ImageBrush ImageSource="/Assets/StoreLogo.png"
                     Stretch="UniformToFill" />

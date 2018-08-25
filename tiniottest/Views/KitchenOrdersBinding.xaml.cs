@@ -109,18 +109,44 @@ namespace tiniottest.Views
         private void onOrderItemClick(object sender, ItemClickEventArgs e)
         {
             /*
-            RestaurantOrder order = (RestaurantOrder)((GridView)sender).SelectedItem;
-            if(order != null)
+            SaleOrderItem order = (SaleOrderItem)((ListView)sender).SelectedItem;
+            if (order != null)
             {
-                var dialog = new MessageDialog("Table Clicked: " + order.TableInfo, "Click");
+                var dialog = new MessageDialog("Item Clicked: " + order.ItemDetails, "Click");
                 var result = dialog.ShowAsync();
             }
             */
-            
+            /*
+           
+            */
+
         }
 
-        private async void onOrderSelectionChanged(object sender, SelectionChangedEventArgs e)
+        private async void onOrderItemSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            SaleOrderItem orderItem = (SaleOrderItem)((ListView)sender).SelectedItem;
+            if (orderItem != null)
+            {
+                var dialog = new MessageDialog("Item Selected: " + orderItem.ItemDetails, "Selected");
+                var result = dialog.ShowAsync();
+                var listView = (ListView)sender;
+               
+              
+                ViewModel.UpdateItem(listView.Name, orderItem.OrderItemId);
+                Image checkImage = (Image)listView.FindName("checkImg");
+                if (checkImage != null)
+                {
+                    checkImage.Visibility = Visibility.Visible;
+                }
+                
+            }
+
+        }
+
+            private async void onOrderSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            
+            
             /*
             RestaurantOrder order = (RestaurantOrder)((GridView)sender).SelectedItem;
             if (order != null)
@@ -189,6 +215,11 @@ namespace tiniottest.Views
                     await msgbox2.ShowAsync();
                 }
             }
+
+        }
+
+        private void onOrderItemClick(object sender, SelectionChangedEventArgs e)
+        {
 
         }
     }
