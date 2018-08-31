@@ -36,9 +36,6 @@ namespace tiniottest.Views
             
             this.InitializeComponent();
             ViewModel = new KitchenViewModel();
-            
-
-
             DataContext = ViewModel;
             timeLbl.Text = getCurrentTime();
         }

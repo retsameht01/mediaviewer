@@ -1,0 +1,43 @@
+﻿<Page
+    x:Class="tiniottest.MenuList"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local1="using:tiniottest.core.Model"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <ListView  x:Name="productCategories" ItemsSource="{x:Bind ViewModel.productCategories}" HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Stretch" Background="#01579b" Padding="0,10,0,0">
+            <ListView.ItemTemplate>
+                <DataTemplate x:Name="DoubleLineDataTemplate1" x:DataType="local1:ProductCategory">
+                    <StackPanel  Orientation="Vertical" AutomationProperties.Name="{x:Bind Name}" Background="ForestGreen" HorizontalAlignment="Stretch" Margin="20,0,100,10">
+                        <TextBlock  Text="{x:Bind Name}" VerticalAlignment="Center"  Margin="10,0,0,0" Height="50" Style="{ThemeResource BaseTextBlockStyle}" Foreground="White" FontSize="25" />
+                        <ListView x:Name="priceList" ItemsSource="{x:Bind ListProducts}"  HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Stretch" Background="#01579b" Padding="0,10,0,0" Visibility="Visible">
+                            <ListView.ItemTemplate>
+                                <DataTemplate x:Name="DoubleLineDataTemplate2" x:DataType="local1:ListProduct">
+                                    <StackPanel  Orientation="Horizontal" Height="40" AutomationProperties.Name="{x:Bind Name}" Background="#283593" HorizontalAlignment="Stretch" Margin="100,0,100,10">
+                                        <Image Width="40" Height="40" Source="{x:Bind imgUri}" Margin="0,0,5,0"/>
+                                        <TextBlock  Text="{x:Bind Name}"  Style="{ThemeResource BaseTextBlockStyle}" Foreground="White" FontSize="20" />
+                                        <TextBlock  Text="{x:Bind itemPrice}" Style="{ThemeResource BodyTextBlockStyle}" Foreground="White" FontSize="20" Margin="20,0,100,10"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+
+
+           
+
+
+        </ListView>
+        
+        
+
+        <Grid.Background>
+            <ImageBrush ImageSource="/Assets/StoreLogo.png"
+                    Stretch="UniformToFill" />
+        </Grid.Background>
+
+    </Grid>
+</Page>

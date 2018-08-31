@@ -12,7 +12,7 @@
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
     <TargetPlatformVersion Condition=" '$(TargetPlatformVersion)' == '' ">10.0.17134.0</TargetPlatformVersion>
-    <TargetPlatformMinVersion>10.0.15063.0</TargetPlatformMinVersion>
+    <TargetPlatformMinVersion>10.0.17134.0</TargetPlatformMinVersion>
     <MinimumVisualStudioVersion>14</MinimumVisualStudioVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -95,12 +95,14 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="core\CoreSingle.cs" />
     <Compile Include="core\Model\BooleanToVisibilityConverter.cs" />
     <Compile Include="core\Model\Category.cs" />
     <Compile Include="core\Model\FoodModifier.cs" />
     <Compile Include="core\GposApi.cs" />
     <Compile Include="core\Model\ListProduct.cs" />
     <Compile Include="core\Model\Product.cs" />
+    <Compile Include="core\Model\ProductCategory.cs" />
     <Compile Include="core\Model\RestaurantOrder.cs" />
     <Compile Include="core\Model\SaleOrderItem.cs" />
     <Compile Include="core\SettingKey.cs" />
@@ -109,6 +111,15 @@
     <Compile Include="core\Model\WaitingCustomer.cs" />
     <Compile Include="core\WeatherApi.cs" />
     <Compile Include="core\Model\WeatherInfo.cs" />
+    <Compile Include="MainContainerPage.xaml.cs">
+      <DependentUpon>MainContainerPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MainNavigation.xaml.cs">
+      <DependentUpon>MainNavigation.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MenuList.xaml.cs">
+      <DependentUpon>MenuList.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -126,6 +137,7 @@
       <DependentUpon>Signage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ViewModels\KitchenViewModel.cs" />
+    <Compile Include="Views\ViewModels\MenuViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -168,6 +180,18 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="MainContainerPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainNavigation.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MenuList.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -192,6 +216,9 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
       <Version>6.1.5</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.UI.Xaml">
+      <Version>2.0.180724003-prerelease</Version>
     </PackageReference>
     <PackageReference Include="Newtonsoft.Json">
       <Version>11.0.2</Version>

@@ -73,6 +73,9 @@ namespace tiniottest.Views
             settingsMgr.saveSetting(SettingKey.THEME_OPTION_KEY, themColor.SelectionBoxItem.ToString());
 
             var OperationMode = settingsMgr.getStringSettings(SettingKey.OPERATION_MODE_KEY);
+            this.Frame.GoBack();
+            
+            /*
             switch (OperationMode)
             {
                 case "WAITING LIST":
@@ -83,6 +86,7 @@ namespace tiniottest.Views
                     this.Frame.Navigate(typeof(KitchenOrdersBinding), null);
                     break;
             }
+            */
         }
     }
 }

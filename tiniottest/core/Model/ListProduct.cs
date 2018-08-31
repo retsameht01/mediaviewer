@@ -36,17 +36,18 @@ namespace tiniottest.core.Model
                 
             }
         }
-        static string BASE_IMG_URL = "https://www.gposdev.com/20002/images/";
-
+        
         public string imgUri
         {
             get
             {
                 //https://www.gposdev.com/20002/images/pedicure.jpg
                 Product product = Products.FirstOrDefault();
+                string baseUrl = CoreSingle.Instance.BASE_ASSET_URL;
+                 
                 if (product != null)
                 {
-                    return string.Format("{0}{1}", BASE_IMG_URL, product.ImageUri);
+                    return string.Format("{0}{1}", baseUrl, this.ImageUri);
                 }
                 else
                 {

@@ -9,17 +9,7 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
-        <RelativePanel x:Name="header" HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="150" Background="#0288d1">
-            <TextBlock x:Name="shopTitle" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True" Margin="50,0,0,0" Text="GPOS Wait List" TextWrapping="Wrap" VerticalAlignment="Center" FontSize="40" FontWeight="Bold" Foreground="White" />
-            <TextBlock x:Name="timeLbl"  RelativePanel.AlignVerticalCenterWithPanel="True" RelativePanel.AlignRightWithPanel="True" Margin="0,0,50,0" Text="TextBlock" TextWrapping="Wrap" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="24" FocusVisualPrimaryBrush="White" Foreground="White" FontWeight="Bold"/>
-            <TextBlock x:Name="weatherLbl"  RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignRightWithPanel="True" Margin="0,0,50,20" Text="TextBlock" TextWrapping="Wrap" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="24" FocusVisualPrimaryBrush="White" Foreground="White" FontWeight="Bold"/>
-            <Image  x:Name="weatherIcon" RelativePanel.LeftOf="weatherLbl" RelativePanel.AlignBottomWithPanel="True" HorizontalAlignment="Center" Height="30" Width="30" Margin="0,0,20,20" VerticalAlignment="Center" FocusVisualPrimaryBrush="White" FocusVisualSecondaryBrush="White" >
-
-            </Image>
-            <Button x:Name="settingsBtn" Margin="50,0,0,0" RelativePanel.AlignVerticalCenterWithPanel="True" Content="Settings"  Height="57" VerticalAlignment="Center" Width="108" Foreground="White" FontSize="22" Click="settingsBtn_Click"/>
-        </RelativePanel>
-
-        <ListView x:Name="signinList" HorizontalAlignment="Stretch" Margin="0,150,0,0" VerticalAlignment="Stretch" Background="#01579b" Padding="0,10,0,0" Visibility="Collapsed">
+        <ListView x:Name="signinList" HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Stretch" Background="#01579b" Padding="0,10,0,0" >
 
             <ListView.ItemTemplate>
                 <DataTemplate x:Name="DoubleLineDataTemplate" x:DataType="local:WaitingCustomer">
@@ -42,22 +32,7 @@
             </ListView.ItemContainerStyle>
 
         </ListView> 
-
-
-        <ListView x:Name="priceList" HorizontalAlignment="Stretch" Margin="0,150,0,0" VerticalAlignment="Stretch" Background="#01579b" Padding="0,10,0,0" Visibility="Visible">
-            <ListView.ItemTemplate>
-                <DataTemplate x:Name="DoubleLineDataTemplate2" x:DataType="local1:ListProduct">
-                    <StackPanel  Orientation="Horizontal" Height="40" AutomationProperties.Name="{x:Bind Name}" Background="#283593" HorizontalAlignment="Stretch" Margin="100,0,100,10">
-                        <Image Width="40" Height="40" Source="{x:Bind imgUri}"/>
-                        <TextBlock  Text="{x:Bind Name}"  Style="{ThemeResource BaseTextBlockStyle}" Foreground="White" FontSize="20" />
-                        <TextBlock  Text="{x:Bind itemPrice}" Style="{ThemeResource BodyTextBlockStyle}" Foreground="White" FontSize="20" Margin="20,0,100,10"
-                />
-                    </StackPanel>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-
-
+        
         <Grid.Background>
             <ImageBrush ImageSource="/Assets/StoreLogo.png"
                     Stretch="UniformToFill" />

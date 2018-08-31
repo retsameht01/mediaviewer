@@ -72,18 +72,21 @@ namespace tiniottest
                     // When the navigation stack isn't restored navigate to the first page,
                     // configuring the new page by passing required information as a navigation
                     // parameter
-
+                    /*
                     var OperationMode = settingsMgr.getStringSettings(SettingKey.OPERATION_MODE_KEY);
                     switch(OperationMode)
                     {
                         case "WAITING LIST":
-                            rootFrame.Navigate(typeof(MainPage), e.Arguments);
+                            rootFrame.Navigate(typeof(MainContainerPage), e.Arguments);
                             break;
 
                         case "KITCHEN LIST":
                             rootFrame.Navigate(typeof(KitchenOrdersBinding), e.Arguments);
                             break;
                     }
+                    */
+
+                    rootFrame.Navigate(typeof(MainContainerPage), e.Arguments);
 
                 }
                 // Ensure the current window is active

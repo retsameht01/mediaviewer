@@ -25,8 +25,6 @@ namespace tiniottest.Views.ViewModels
 
         }
 
-
-
         public void SetData(List<RestaurantOrder> orders)
         {
             Orders.Clear();
@@ -39,7 +37,7 @@ namespace tiniottest.Views.ViewModels
             }
         }
 
-        public ObservableCollection<RestaurantOrder> Orders { get; set; }
+        public ObservableCollection<RestaurantOrder> Orders { get; }
 
 
         public void removeOrder(RestaurantOrder order)
