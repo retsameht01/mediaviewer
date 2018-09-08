@@ -10,7 +10,7 @@
 
     <Grid>
         <RelativePanel x:Name="header" HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="150" Background="#0288d1">
-            <TextBlock x:Name="shopName" RelativePanel.AlignVerticalCenterWithPanel="True" Margin="200,0,0,0" Text="My Shop" TextWrapping="Wrap" VerticalAlignment="Center" FontSize="40" FontWeight="Bold" Foreground="White" />
+            <TextBlock x:Name="businessTitle" RelativePanel.AlignVerticalCenterWithPanel="True" Margin="200,0,0,0" Text="My Shop" TextWrapping="Wrap" VerticalAlignment="Center" FontSize="40" FontWeight="Bold" Foreground="White" />
             <TextBlock x:Name="pageTitle" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True" Margin="50,0,0,0" Text="GPOS Wait List" TextWrapping="Wrap" VerticalAlignment="Center" FontSize="40" FontWeight="Bold" Foreground="White" />
             <TextBlock x:Name="timeLbl"  RelativePanel.AlignVerticalCenterWithPanel="True" RelativePanel.AlignRightWithPanel="True" Margin="0,0,50,0" Text="TextBlock" TextWrapping="Wrap" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="24" FocusVisualPrimaryBrush="White" Foreground="White" FontWeight="Bold"/>
             <TextBlock x:Name="weatherLbl"  RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignRightWithPanel="True" Margin="0,0,50,20" Text="TextBlock" TextWrapping="Wrap" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="24" FocusVisualPrimaryBrush="White" Foreground="White" FontWeight="Bold"/>

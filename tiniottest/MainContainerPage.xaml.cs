@@ -18,7 +18,7 @@ namespace tiniottest
     {
 
         private SettingsManager settingsMgr;
-        private static int TICK_INTERVAL = 30;
+        private static int TICK_INTERVAL = 60;
         private List<Type> mPages;
         private int currentPageIndex;
         private bool isSettingsActive = false;
@@ -32,6 +32,8 @@ namespace tiniottest
             var gposUrl = settingsMgr.getStringSettings(SettingKey.GPOS_API_URL_KEY);
             CoreSingle.Instance.BASE_ASSET_URL = gposUrl.Replace("api", "images");
             pageTitle.Text = "Menu List";
+            var businessName = settingsMgr.getStringSettings(SettingKey.BUSINESS_NAME_KEY);
+            this.businessTitle.Text = businessName;
             this.pageContent.Navigate(typeof(MenuList));
             currentPageIndex = 0;
             mPages = new List<Type>();
