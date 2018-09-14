@@ -95,9 +95,12 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="core\AppEventListener.cs" />
     <Compile Include="core\CoreSingle.cs" />
+    <Compile Include="core\EventType.cs" />
     <Compile Include="core\Model\BooleanToVisibilityConverter.cs" />
     <Compile Include="core\Model\Category.cs" />
+    <Compile Include="core\Model\EventContainer.cs" />
     <Compile Include="core\Model\FoodModifier.cs" />
     <Compile Include="core\GposApi.cs" />
     <Compile Include="core\Model\ListProduct.cs" />
@@ -129,6 +132,9 @@
     </Compile>
     <Compile Include="Views\KitchenOrders.xaml.cs">
       <DependentUpon>KitchenOrders.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MediaSlider.xaml.cs">
+      <DependentUpon>MediaSlider.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Settings.xaml.cs">
       <DependentUpon>Settings.xaml</DependentUpon>
@@ -164,6 +170,10 @@
     <Content Include="Assets\13n.png" />
     <Content Include="Assets\50d.png" />
     <Content Include="Assets\50n.png" />
+    <Content Include="Assets\ads_sample\add_new.jpg" />
+    <Content Include="Assets\ads_sample\ads_1.jpg" />
+    <Content Include="Assets\ads_sample\pepsi_french.jpg" />
+    <Content Include="Assets\ads_sample\scary_ad.jpg" />
     <Content Include="Assets\checkmark.png" />
     <Content Include="Assets\gpos_logo.png" />
     <Content Include="Properties\Default.rd.xml" />
@@ -204,6 +214,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\MediaSlider.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Settings.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -224,6 +238,7 @@
       <Version>11.0.2</Version>
     </PackageReference>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

@@ -20,7 +20,7 @@ namespace tiniottest
     {
         private SettingsManager settingsMgr;
         private GposApi<List<WaitingCustomer>> gposApi;
-        private GposApi<List<ListProduct>> gposApi2;
+       // private GposApi<List<ListProduct>> gposApi2;
         private int runningTime;
         private static int TIME_BETWEEN_CHANGES = 60;
         public MainPage()
@@ -32,7 +32,7 @@ namespace tiniottest
             gposApi = new GposApi<List<WaitingCustomer>>(settingsMgr.getStringSettings(SettingKey.GPOS_API_URL_KEY),
                 settingsMgr.getStringSettings(SettingKey.GPOS_API_PASS_KEY));
 
-            gposApi2 = new GposApi<List<ListProduct>>(settingsMgr.getStringSettings(SettingKey.GPOS_API_URL_KEY), settingsMgr.getStringSettings(SettingKey.GPOS_API_PASS_KEY));
+            //gposApi2 = new GposApi<List<ListProduct>>(settingsMgr.getStringSettings(SettingKey.GPOS_API_URL_KEY), settingsMgr.getStringSettings(SettingKey.GPOS_API_PASS_KEY));
         }
 
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
@@ -49,8 +49,16 @@ namespace tiniottest
 
         private async void loadAsyncData(object sender, object e)
         {
-            var result = await gposApi.GetAsync("signIns");
-            signinList.ItemsSource = result;
+            List<WaitingCustomer> result = await gposApi.GetAsync("signIns");
+            if(result == null || result.Count == 0)
+            {
+
+
+            } else
+            {
+                signinList.ItemsSource = result;
+            }
+           
         }
 
         private String getCurrentTime()

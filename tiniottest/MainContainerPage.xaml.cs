@@ -14,7 +14,7 @@ namespace tiniottest
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class MainContainerPage : Page
+    public sealed partial class MainContainerPage : Page, AppEventListener
     {
 
         private SettingsManager settingsMgr;
@@ -22,6 +22,7 @@ namespace tiniottest
         private List<Type> mPages;
         private int currentPageIndex;
         private bool isSettingsActive = false;
+     
        
         public MainContainerPage()
         {
@@ -38,8 +39,15 @@ namespace tiniottest
             currentPageIndex = 0;
             mPages = new List<Type>();
             mPages.Add(typeof(MenuList));
-            mPages.Add(typeof(MainPage));
+            mPages.Add(typeof(MediaSlider));
+            //mPages.Add(typeof(MediaSlider));
 
+        }
+
+        private void reloadSettingsData()
+        {
+            var businessName = settingsMgr.getStringSettings(SettingKey.BUSINESS_NAME_KEY);
+            this.businessTitle.Text = businessName;
         }
 
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
@@ -103,6 +111,25 @@ namespace tiniottest
         private void goto_settings(object sender, RoutedEventArgs e)
         {
             this.pageContent.Navigate(typeof(Settings));
+        }
+
+        public void onEvent(EventContainer content)
+        {
+            switch(content.eventType)
+            {
+                case EType.EMTPY_DATA_RESULT:
+                    String data = content.eventData as String;
+                    if (data.Equals("WaitingList"))
+                    {
+
+                    }
+                    break;
+
+                case EType.SETTINGS_UPDATED:
+
+
+                    break;
+            }
         }
     }
 }
