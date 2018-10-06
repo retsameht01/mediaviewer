@@ -175,6 +175,7 @@
     <Content Include="Assets\ads_sample\pepsi_french.jpg" />
     <Content Include="Assets\ads_sample\scary_ad.jpg" />
     <Content Include="Assets\checkmark.png" />
+    <Content Include="Assets\fruits.jpg" />
     <Content Include="Assets\gpos_logo.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />

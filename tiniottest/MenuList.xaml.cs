@@ -34,7 +34,7 @@ namespace tiniottest
         {
             
             DispatcherTimer dispatcherTimer = new DispatcherTimer();
-            dispatcherTimer.Interval = new TimeSpan(0, 0, 10);
+            dispatcherTimer.Interval = new TimeSpan(0, 0, 20);
             dispatcherTimer.Tick += changeCategories;
             dispatcherTimer.Start();
 
